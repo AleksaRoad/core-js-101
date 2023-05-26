@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* *******************************************************************************************
  *                                                                                           *
  * Please read the following tutorial before implementing tasks:                              *
@@ -50,8 +51,7 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(x, y) {
-  // eslint-disable-next-line no-undef
-  return Number((BigInt(x) + BigInt(y)) / BigInt(2));
+  return x / 2 + y / 2;
 }
 
 /**
@@ -107,7 +107,10 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  return (180 / Math.PI) * Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+  return Math.acos(
+    (x1 * x2 + y1 * y2)
+    / (Math.sqrt(x1 ** 2 + y1 ** 2) * Math.sqrt(x2 ** 2 + y2 ** 2)),
+  );
 }
 
 /**
@@ -154,8 +157,8 @@ function parseNumberFromString(value) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelepipedDiagonal(a, b, c) {
+  return Math.sqrt(a ** 2 + b ** 2 + c ** 2);
 }
 
 /**
@@ -175,8 +178,8 @@ function getParallelepipedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  return Number(Math.round(num / 10 ** pow) + '0'.repeat(pow));
 }
 
 /**
@@ -196,8 +199,15 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(num) {
+  if (num === 2 || num === 3) return true;
+  if (num <= 1 || num % 2 === 0 || num % 3 === 0) return false;
+  for (let i = 5; i * i <= num; i += 6) {
+    if (num % i === 0 || num % (i + 2) === 0) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -215,8 +225,18 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  if (
+    typeof value !== 'undefined'
+    // eslint-disable-next-line no-restricted-globals
+    && !isNaN(Number(value))
+    && (typeof value === 'number'
+      || typeof Number(value) === 'number'
+      || value instanceof Number)
+  ) {
+    return Number(value);
+  }
+  return def;
 }
 
 module.exports = {
