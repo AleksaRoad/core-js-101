@@ -372,9 +372,8 @@ function sortDigitNamesByNumericOrder(arr) {
   const sortArrayValues = arr
     .map((element) => dictionary[element])
     .sort((a, b) => a - b);
-  return sortArrayValues.map((element) =>
-    Object.keys(dictionary).find((key) => dictionary[key] === element)
-  );
+  return sortArrayValues.map((element) => Object.keys(dictionary)
+    .find((key) => dictionary[key] === element));
 }
 
 /**
@@ -532,7 +531,7 @@ function getIntervalArray(start, end) {
   return Array.from(
     { length: end - start + 1 },
     // eslint-disable-next-line no-return-assign, no-param-reassign
-    (_, index) => (index += start)
+    (_, index) => (index += start),
   );
 }
 
