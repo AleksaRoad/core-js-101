@@ -529,8 +529,7 @@ function getIdentityMatrix(n) {
 function getIntervalArray(start, end) {
   return Array.from(
     { length: end - start + 1 },
-    // eslint-disable-next-line no-return-assign, no-param-reassign
-    (_, index) => (index += start),
+    (_, index) => (index + start),
   );
 }
 

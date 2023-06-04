@@ -112,7 +112,6 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
     / (Math.sqrt(x1 ** 2 + y1 ** 2) * Math.sqrt(x2 ** 2 + y2 ** 2)),
   );
 }
-
 /**
  * Returns a last digit of a integer number.
  *
@@ -228,8 +227,7 @@ function isPrime(num) {
 function toNumber(value, def) {
   if (
     typeof value !== 'undefined'
-    // eslint-disable-next-line no-restricted-globals
-    && !isNaN(Number(value))
+    && !Number.isNaN(Number(value))
     && (typeof value === 'number'
       || typeof Number(value) === 'number'
       || value instanceof Number)
